@@ -60,6 +60,13 @@ public class NoteList extends Fragment implements RecyclerItemTouchHelper.Recycl
 
         ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemTouchHelper(0, ItemTouchHelper.RIGHT, this);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(mRecyclerView );
+        
+        return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
         list = getAppDaoSession().getNoteDao().loadAll();
         if(list != null) {
@@ -76,13 +83,6 @@ public class NoteList extends Fragment implements RecyclerItemTouchHelper.Recycl
                 adapter.notifyDataSetChanged();
             }
         }
-
-        return view;
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
     }
 
     @Override
