@@ -8,12 +8,14 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.OvershootInterpolator;
 import android.widget.RelativeLayout;
 
 import com.note.NoteApp;
@@ -24,6 +26,12 @@ import com.note.views.adapter.MyItemRecyclerViewAdapter;
 import com.note.views.adapter.RecyclerItemTouchHelper;
 
 import java.util.List;
+
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
+import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter;
+import jp.wasabeef.recyclerview.animators.FadeInAnimator;
+import jp.wasabeef.recyclerview.animators.ScaleInTopAnimator;
+import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
 
 public class NoteList extends Fragment implements RecyclerItemTouchHelper.RecyclerItemTouchHelperListener{
 
@@ -53,14 +61,7 @@ public class NoteList extends Fragment implements RecyclerItemTouchHelper.Recycl
         ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemTouchHelper(0, ItemTouchHelper.RIGHT, this);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(mRecyclerView );
 
-        return view;
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-       list = getAppDaoSession().getNoteDao().loadAll();
+        list = getAppDaoSession().getNoteDao().loadAll();
         if(list != null) {
             if (list.size() > 0) {
                 for (Note show : list) {
@@ -68,11 +69,20 @@ public class NoteList extends Fragment implements RecyclerItemTouchHelper.Recycl
                 }
 
                 adapter = new MyItemRecyclerViewAdapter(getContext(),list, mListener);
-                mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+
+                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+                mRecyclerView.setLayoutManager(mLayoutManager);
                 mRecyclerView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
             }
         }
+
+        return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
     }
 
     @Override

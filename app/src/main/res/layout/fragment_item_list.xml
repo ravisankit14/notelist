@@ -10,7 +10,6 @@
         android:id="@+id/listSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layoutManager="LinearLayoutManager"
         tools:listitem="@layout/fragment_item"
         android:layout_alignParentStart="true">
     </android.support.v7.widget.RecyclerView>

@@ -1,7 +1,5 @@
 package com.note.views;
 
-import android.app.FragmentTransaction;
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -66,11 +64,9 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                     Intent intent = new Intent(this,ImageViewActivity.class);
                     intent.putExtra(Constants.IMAGE_PATH,sImagePath);
                     startActivity(intent);
-                    finish();
                 }else{
                     Toast.makeText(this,"No image to show",Toast.LENGTH_SHORT).show();
                 }
-
         }
     }
 
@@ -86,7 +82,6 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(this, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
     }

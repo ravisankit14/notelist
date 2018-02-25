@@ -19,11 +19,9 @@ public class NoteApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
         DaoMaster2.DevOpenHelper helper = new DaoMaster2.DevOpenHelper(this,"note-db"); //The users-db here is the name of our database.
         Database db = helper.getWritableDb();
         daoSession2 = new DaoMaster2(db).newSession();
-
     }
 
     public DaoSession2 getDaoSession2() {

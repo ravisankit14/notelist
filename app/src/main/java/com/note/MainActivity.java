@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements NoteList.OnListFr
     }
 
     @Override
-    public void onListFragmentInteraction(Note note) {
+    public void onListFragmentInteraction(@NonNull Note note) {
 
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra(Constants.TITLE,note.getTitle());

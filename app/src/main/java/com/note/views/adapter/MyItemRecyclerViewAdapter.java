@@ -4,11 +4,15 @@ import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.view.ViewCompat;
+import android.support.v4.view.ViewPropertyAnimatorListener;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,12 +30,15 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import jp.wasabeef.recyclerview.animators.holder.AnimateViewHolder;
+
 
 public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder> {
 
     private Context mContext;
     private final List<Note> mValues;
     private final OnListFragmentInteractionListener mListener;
+    private int lastPosition = -1;
 
     public MyItemRecyclerViewAdapter(Context context,@NonNull List<Note> items,@NonNull OnListFragmentInteractionListener listener) {
         mContext = context;
@@ -47,7 +54,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder,final int position) {
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).getTitle());
         holder.mContentView.setText(mValues.get(position).getText());
@@ -79,15 +86,17 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
 
                 Intent intent = new Intent(mContext, AddActivity.class);
                 intent.putExtra(Constants._ID,mValues.get(position).getId());
-                intent.putExtra("feomAdd",true);
+                intent.putExtra("fromAdd",true);
                 mContext.startActivity(intent);
             }
         });
+
+        setAnimation(holder.itemView,position);
     }
 
     @Override
     public int getItemCount() {
-        if(mValues.size()>0){
+        if(mValues.size() > 0){
             return mValues.size();
         }
         return 0;
@@ -105,7 +114,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         notifyItemInserted(position);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder{
         private final View mView;
         private final TextView mIdView;
         private final TextView mContentView;
@@ -129,9 +138,21 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         public String toString() {
             return super.toString() + " '" + mContentView.getText() + "'";
         }
+
+
     }
 
     private DaoSession2 getAppDaoSession() {
         return ((NoteApp)mContext.getApplicationContext()).getDaoSession2();
+    }
+
+    private void setAnimation(View viewToAnimate, int position) {
+        if (position > lastPosition)
+        {
+            Animation animation = AnimationUtils.loadAnimation(mContext, android.R.anim.slide_in_left);
+            animation.setDuration(500);
+            viewToAnimate.startAnimation(animation);
+            lastPosition = position;
+        }
     }
 }

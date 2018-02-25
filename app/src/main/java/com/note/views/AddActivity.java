@@ -16,7 +16,7 @@ public class AddActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add);
 
         long id = getIntent().getLongExtra(Constants._ID,0);
-        boolean edit = getIntent().getBooleanExtra("feomAdd",false);
+        boolean edit = getIntent().getBooleanExtra("fromAdd",false);
 
         if(edit) {
             AddNoteFragment viewPageFragment = (AddNoteFragment) getSupportFragmentManager()
