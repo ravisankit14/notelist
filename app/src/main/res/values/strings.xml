@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Note</string>
+    <string name="action_settings">Settings</string>
+
+
+    <string name="title">Title</string>
+    <string name="text">Tomorrow is the meeting at 11:00 am</string>
+    <string name="textHint">Enter Descrition</string>
+    <string name="created_time">12th Jan 2016, 10:10 PM</string>
+    <string name="add">Add to list</string>
+    <string name="update">Update to list</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

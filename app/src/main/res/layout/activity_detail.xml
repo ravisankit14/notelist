@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+        <TextView
+            android:id="@+id/note_title2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title"
+            android:layout_marginStart="10dp"
+            android:textSize="15sp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:textAppearance="?attr/textAppearanceListItem" />
+
+        <TextView
+            android:id="@+id/note_description2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:textSize="16sp"
+            android:maxLines="2"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:layout_below="@+id/note_title2"/>
+
+        <TextView
+            android:id="@+id/note_createdTime2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/created_time"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:textSize="12sp"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:layout_below="@+id/note_description2"/>
+
+        <ImageView
+            android:id="@+id/note_imageView2"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/note_createdTime2"/>
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
+
