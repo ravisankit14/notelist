@@ -117,7 +117,7 @@ public class NoteList extends Fragment implements RecyclerItemTouchHelper.Recycl
 
             // showing snack bar with Undo option
             Snackbar snackbar = Snackbar
-                    .make(relativeLayout, name + " removed from cart!", Snackbar.LENGTH_LONG);
+                    .make(relativeLayout, name + " removed from note!", Snackbar.LENGTH_LONG);
             snackbar.setAction("DELETED", new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
