@@ -175,8 +175,8 @@ public class AddNoteFragment extends Fragment implements View.OnClickListener{
 
     public String getDate(){
 
-        String timeStamp = new SimpleDateFormat("EEE, d MMM yyyy HH:mm").format(new Date());
-        return timeStamp;
+        String timeStamp2 = new SimpleDateFormat("EEE, d MMM yyyy hh:mm aaa").format(new Date());
+        return timeStamp2;
     }
 
 
